@@ -405,7 +405,7 @@ export const AuthLayout = ({ children }: { children: React.ReactNode }) => {
 
         {/* ─── Right: Auth content area (35%) ─── */}
         <main className="flex items-center justify-center border-l border-border/30 bg-background/50 px-6 sm:px-12 lg:pr-[15%] xl:pr-[20%]">
-          <div className="relative w-full max-w-[420px]">
+          <div className="relative w-full max-w-[440px]">
             {/* Mobile logo – only visible below lg breakpoint */}
             <div
               className="mb-10 flex flex-col items-center gap-3 lg:hidden"
@@ -429,7 +429,7 @@ export const AuthLayout = ({ children }: { children: React.ReactNode }) => {
             {/* Clerk component renders here */}
             {/* Clerk component wrapper with decorative, blur-free frame */}
             <div
-              className="relative w-full"
+              className="relative w-full justify-center items-center flex"
               style={{
                 opacity: mounted ? 1 : 0,
                 transform: mounted
@@ -446,15 +446,15 @@ export const AuthLayout = ({ children }: { children: React.ReactNode }) => {
               <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-primary/5 via-transparent to-transparent" />
 
               {/* Architectural corner accents */}
-              <div className="absolute -top-7 -left-7 h-8 w-8 rounded-tl-[24px] border-t-[3px] border-l-[3px] border-primary/40" />
-              <div className="absolute -top-7 -right-7 h-8 w-8 rounded-tr-[24px] border-t-[3px] border-r-[3px] border-primary/40" />
-              <div className="absolute -bottom-7 -left-7 h-8 w-8 rounded-bl-[24px] border-b-[3px] border-l-[3px] border-primary/40" />
-              <div className="absolute -right-7 -bottom-7 h-8 w-8 rounded-br-[24px] border-r-[3px] border-b-[3px] border-primary/40" />
+              <div className="absolute -top-6 -left-6 h-8 w-8 rounded-tl-[24px] border-t-[3px] border-l-[3px] border-primary/40" />
+              <div className="absolute -top-6 -right-6 h-8 w-8 rounded-tr-[24px] border-t-[3px] border-r-[3px] border-primary/40" />
+              <div className="absolute -bottom-6 -left-6 h-8 w-8 rounded-bl-[24px] border-b-[3px] border-l-[3px] border-primary/40" />
+              <div className="absolute -right-6 -bottom-6 h-8 w-8 rounded-br-[24px] border-r-[3px] border-b-[3px] border-primary/40" />
 
               {/* The Actual Auth Box */}
-              <div className="relative z-10 flex min-h-[460px] w-full items-center justify-center rounded-2xl bg-white shadow-xl ring-1 shadow-black/5 ring-border/50">
-                <div className="w-full">{children}</div>
-              </div>
+
+                <div>{children}</div>
+
 
               {/* Minimalist footer links */}
               <div className="absolute right-0 -bottom-16 left-0 flex items-center justify-center gap-4 text-[13px] font-medium text-muted-foreground/70">
