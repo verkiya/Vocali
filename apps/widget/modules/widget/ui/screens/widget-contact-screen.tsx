@@ -69,7 +69,7 @@ export const WidgetContactScreen = () => {
               </>
             )}
           </Button>
-          <Button variant="tertiary" asChild className="w-full" size="lg">
+          <Button variant="secondary" asChild className="w-full" size="lg">
             <Link href={`tel:${phoneNumber}`}>
               <PhoneIcon />
               Call Now

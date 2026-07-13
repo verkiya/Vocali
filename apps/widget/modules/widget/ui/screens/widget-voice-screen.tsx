@@ -105,7 +105,7 @@ export const WidgetVoiceScreen = () => {
             ) : (
               <Button
                 className="w-full gap-x-2 shadow-md"
-                variant="tertiary"
+                variant="secondary"
                 disabled={isConnecting}
                 size="lg"
                 onClick={startCall}
