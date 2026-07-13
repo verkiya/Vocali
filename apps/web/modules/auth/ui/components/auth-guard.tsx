@@ -2,6 +2,7 @@
 
 import { Authenticated, Unauthenticated, AuthLoading } from "convex/react"
 import { AuthLayout } from "../layouts/auth-layout"
+import { GlobalLoader } from "@/components/global-loader"
 import { SignInView } from "../views/sign-in-view"
 
 export const AuthGuard = ({ children }: { children: React.ReactNode }) => {
@@ -9,7 +10,7 @@ export const AuthGuard = ({ children }: { children: React.ReactNode }) => {
     <>
       <AuthLoading>
         <AuthLayout>
-          <p>Loading...</p>
+          <GlobalLoader />
         </AuthLayout>
       </AuthLoading>
       <Authenticated>{children}</Authenticated>

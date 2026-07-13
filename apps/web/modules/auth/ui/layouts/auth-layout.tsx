@@ -1,6 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { ArrowRight, GitBranchIcon, Heart } from "lucide-react";
+import { cn } from "@workspace/ui/lib/utils";
+import { Button } from "@workspace/ui/components/button";
 
 /* ------------------------------------------------------------------ */
 /*  Vocali Logo – inline SVG from /app/icon.svg                        */
@@ -8,8 +12,8 @@ import { useEffect, useState } from "react";
 function VocaliLogo({ className }: { className?: string }) {
   return (
     <svg
-      width="32"
-      height="32"
+      width="42"
+      height="42"
       viewBox="0 0 48 48"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -51,21 +55,21 @@ function AnimatedBackground() {
 
       {/* Floating orbs – using Tailwind animation classes from globals.css */}
       <div
-        className="absolute -left-32 -top-32 h-[500px] w-[500px] rounded-full opacity-30 blur-[100px] animate-[auth-float-1_20s_ease-in-out_infinite]"
+        className="absolute -top-32 -left-32 h-[600px] w-[600px] animate-[auth-float-1_20s_ease-in-out_infinite] rounded-full opacity-30"
         style={{
           background:
             "radial-gradient(circle, var(--primary) 0%, transparent 70%)",
         }}
       />
       <div
-        className="absolute -bottom-24 -right-24 h-[400px] w-[400px] rounded-full opacity-20 blur-[100px] animate-[auth-float-2_25s_ease-in-out_infinite]"
+        className="absolute -right-24 -bottom-24 h-[500px] w-[500px] animate-[auth-float-2_25s_ease-in-out_infinite] rounded-full opacity-20"
         style={{
           background:
             "radial-gradient(circle, var(--primary) 0%, transparent 70%)",
         }}
       />
       <div
-        className="absolute left-1/3 top-1/2 h-[300px] w-[300px] rounded-full opacity-[0.15] blur-[120px] animate-[auth-float-3_18s_ease-in-out_infinite]"
+        className="absolute top-1/2 left-1/3 h-[400px] w-[400px] animate-[auth-float-3_18s_ease-in-out_infinite] rounded-full opacity-[0.15]"
         style={{
           background:
             "radial-gradient(circle, var(--primary) 0%, transparent 70%)",
@@ -116,15 +120,15 @@ function AnimatedBackground() {
       </svg>
 
       {/* Small floating particles */}
-      {[...Array(6)].map((_, i) => (
+      {[...Array(8)].map((_, i) => (
         <div
           key={i}
-          className="absolute h-1.5 w-1.5 rounded-full bg-primary/40 animate-[auth-particle_15s_ease-in-out_infinite]"
+          className="absolute h-1.5 w-1.5 animate-[auth-particle_15s_ease-in-out_infinite] rounded-full bg-primary/40"
           style={{
-            left: `${15 + i * 14}%`,
-            top: `${20 + ((i * 37) % 60)}%`,
-            animationDelay: `${i * 2}s`,
-            animationDuration: `${12 + i * 3}s`,
+            left: `${10 + i * 12}%`,
+            top: `${15 + ((i * 41) % 70)}%`,
+            animationDelay: `${i * 1.5}s`,
+            animationDuration: `${12 + i * 2}s`,
           }}
         />
       ))}
@@ -138,12 +142,11 @@ function AnimatedBackground() {
 const FEATURES = [
   {
     label: "AI Voice Agents",
-    description:
-      "Deploy intelligent voice assistants that handle customer conversations naturally",
+    description: "Deploy intelligent voice assistants naturally",
     icon: (
       <svg
-        width="18"
-        height="18"
+        width="20"
+        height="20"
         viewBox="0 0 20 20"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -162,27 +165,16 @@ const FEATURES = [
           fill="currentColor"
           opacity="0.7"
         />
-        <path
-          d="M2 8C2.55228 8 3 8.44772 3 9V11C3 11.5523 2.55228 12 2 12C1.44772 12 1 11.5523 1 11V9C1 8.44772 1.44772 8 2 8Z"
-          fill="currentColor"
-          opacity="0.4"
-        />
-        <path
-          d="M18 7C18.5523 7 19 7.44772 19 8V12C19 12.5523 18.5523 13 18 13C17.4477 13 17 12.5523 17 12V8C17 7.44772 17.4477 7 18 7Z"
-          fill="currentColor"
-          opacity="0.4"
-        />
       </svg>
     ),
   },
   {
-    label: "Human + AI Collaboration",
-    description:
-      "Seamlessly hand off between AI and human operators without losing context",
+    label: "Human + AI",
+    description: "Seamless hand off between AI and humans",
     icon: (
       <svg
-        width="18"
-        height="18"
+        width="20"
+        height="20"
         viewBox="0 0 20 20"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -211,12 +203,11 @@ const FEATURES = [
   },
   {
     label: "Enterprise Security",
-    description:
-      "End-to-end encryption, role-based access, and multi-tenant isolation",
+    description: "End-to-end encryption & multi-tenant isolation",
     icon: (
       <svg
-        width="18"
-        height="18"
+        width="20"
+        height="20"
         viewBox="0 0 20 20"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -241,6 +232,53 @@ const FEATURES = [
 ] as const;
 
 /* ------------------------------------------------------------------ */
+/*  Tech Stack Pills                                                   */
+/* ------------------------------------------------------------------ */
+const TECH_STACK = [
+  {
+    name: "Next.js",
+    className:
+      "bg-slate-100/50 text-slate-800 border-slate-200 dark:bg-slate-900/50 dark:text-slate-300 dark:border-slate-800",
+  },
+  {
+    name: "Convex",
+    className:
+      "bg-red-50/50 text-red-700 border-red-200 dark:bg-red-950/30 dark:text-red-400 dark:border-red-900/50",
+  },
+  {
+    name: "Clerk",
+    className:
+      "bg-indigo-50/50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/30 dark:text-indigo-400 dark:border-indigo-900/50",
+  },
+  {
+    name: "Tailwind CSS",
+    className:
+      "bg-sky-50/50 text-sky-700 border-sky-200 dark:bg-sky-950/30 dark:text-sky-400 dark:border-sky-900/50",
+  },
+  {
+    name: "shadcn/ui",
+    className:
+      "bg-zinc-100/50 text-zinc-800 border-zinc-200 dark:bg-zinc-900/50 dark:text-zinc-300 dark:border-zinc-800",
+  },
+];
+
+function LearningsButton() {
+  return (
+    <Button
+      asChild
+      size="lg"
+      variant="outlinePrimary"
+      className="fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full px-6 shadow-lg  transition-all hover:scale-105"
+    >
+      <Link href="/learnings" prefetch>
+        <span className="font-medium">What I Learned Building Vocali</span>
+        <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
+      </Link>
+    </Button>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Auth Layout                                                        */
 /* ------------------------------------------------------------------ */
 export const AuthLayout = ({ children }: { children: React.ReactNode }) => {
@@ -251,146 +289,197 @@ export const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <div className="relative flex min-h-screen w-full bg-background">
+    <div className="relative h-screen w-full overflow-hidden bg-background">
       {/* Global animated background */}
       <AnimatedBackground />
 
-      {/* ─── Left branding panel ─── */}
-      <aside
-        className="relative hidden w-[480px] shrink-0 flex-col justify-between overflow-hidden border-r border-border/40 lg:flex xl:w-[540px]"
-        aria-hidden="true"
-      >
-        {/* Panel overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] via-transparent to-primary/[0.02]" />
-
-        {/* Content */}
-        <div className="relative z-10 flex h-full flex-col justify-between px-10 py-10 xl:px-12 xl:py-12">
-          {/* Top: Logo + wordmark */}
-          <div
-            className="flex items-center gap-2.5"
-            style={{
-              opacity: mounted ? 1 : 0,
-              transform: mounted ? "translateY(0)" : "translateY(8px)",
-              transition: "opacity 0.6s ease, transform 0.6s ease",
-            }}
-          >
-            <VocaliLogo className="text-primary" />
-            <span className="text-lg font-semibold tracking-tight text-foreground">
-              Vocali
-            </span>
-          </div>
-
-          {/* Center: Headline + features */}
-          <div className="flex flex-col gap-10">
+      <div className="relative z-10 grid h-screen grid-cols-1 lg:grid-cols-[65%_35%]">
+        {/* ─── Left branding panel (65%) ─── */}
+        <aside
+          className="hidden flex-col justify-center px-10 py-10 lg:flex xl:px-20"
+          aria-hidden="true"
+        >
+          {/* Content Wrapper */}
+          <div className="mx-auto w-full max-w-4xl">
+            {/* Top: Logo + wordmark */}
             <div
-              className="flex flex-col gap-4"
+              className="mb-8 flex items-center gap-3"
+              style={{
+                opacity: mounted ? 1 : 0,
+                transform: mounted ? "translateY(0)" : "translateY(8px)",
+                transition: "opacity 0.6s ease, transform 0.6s ease",
+              }}
+            >
+              <VocaliLogo className="text-primary" />
+              <span className="text-3xl font-bold tracking-tight text-foreground">
+                Vocali
+              </span>
+            </div>
+
+            {/* Center: Headline + Tech Stack */}
+            <div
+              className="mb-10 flex flex-col gap-6"
               style={{
                 opacity: mounted ? 1 : 0,
                 transform: mounted ? "translateY(0)" : "translateY(12px)",
-                transition:
-                  "opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s",
+                transition: "opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s",
               }}
             >
-              <h1 className="text-[28px] font-semibold leading-[1.2] tracking-tight text-foreground xl:text-[32px]">
+              <h1 className="text-5xl leading-[1.1] font-semibold tracking-tight text-foreground xl:text-7xl">
                 Intelligent customer
                 <br />
                 communication,
                 <br />
-                <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
                   powered by AI.
                 </span>
               </h1>
-              <p className="max-w-[380px] text-[15px] leading-relaxed text-muted-foreground">
+              <p className="max-w-[500px] text-lg leading-relaxed text-muted-foreground">
                 Deploy AI voice agents and live chat that work alongside your
                 team — resolving conversations faster and smarter.
               </p>
+
+              {/* Tech Stack Pills */}
+              <div className="mt-2 flex flex-wrap gap-2">
+                {TECH_STACK.map((tech) => (
+                  <div
+                    key={tech.name}
+                    className={cn(
+                      "rounded-full border px-3 py-1.5 text-sm font-medium",
+                      "transition-all duration-200 hover:scale-105 hover:shadow-md",
+                      tech.className
+                    )}
+                  >
+                    {tech.name}
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Feature list */}
-            <div className="flex flex-col gap-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
               {FEATURES.map((feature, i) => (
                 <div
                   key={feature.label}
-                  className="group flex items-start gap-3.5 rounded-xl border border-transparent px-3 py-3 transition-colors duration-300 hover:border-border/40 hover:bg-card/50"
+                  className="group flex flex-col items-start gap-3 rounded-2xl border border-transparent bg-card/30 px-5 py-5 transition-all duration-300 hover:border-border/60 hover:bg-card/60 hover:shadow-lg"
                   style={{
                     opacity: mounted ? 1 : 0,
                     transform: mounted ? "translateY(0)" : "translateY(10px)",
                     transition: `opacity 0.6s ease ${0.2 + i * 0.1}s, transform 0.6s ease ${0.2 + i * 0.1}s`,
                   }}
                 >
-                  <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-border/60 bg-card/80 text-primary shadow-sm transition-shadow duration-300 group-hover:shadow-md group-hover:shadow-primary/10">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border/60 bg-card/80 text-primary shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:shadow-md group-hover:shadow-primary/10">
                     {feature.icon}
                   </div>
-                  <div className="flex flex-col gap-0.5">
-                    <span className="text-sm font-medium text-foreground">
+                  <div className="flex flex-col gap-1">
+                    <span className="text-base font-semibold text-foreground">
                       {feature.label}
                     </span>
-                    <span className="text-[13px] leading-snug text-muted-foreground">
+                    <span className="text-sm leading-snug text-muted-foreground">
                       {feature.description}
                     </span>
                   </div>
                 </div>
               ))}
             </div>
-          </div>
 
-          {/* Bottom: Trust indicator */}
-          <div
-            className="flex flex-col gap-3"
-            style={{
-              opacity: mounted ? 1 : 0,
-              transition: "opacity 0.8s ease 0.5s",
-            }}
-          >
-            <div className="h-px w-full bg-gradient-to-r from-transparent via-border/50 to-transparent" />
-            <div className="flex items-center gap-2">
-              <div className="h-1.5 w-1.5 rounded-full bg-emerald-500/80 shadow-sm shadow-emerald-500/50" />
-              <p className="text-[13px] text-muted-foreground/70">
+            {/* Bottom: Trust indicator */}
+            <div
+              className="mt-12 flex items-center gap-3"
+              style={{
+                opacity: mounted ? 1 : 0,
+                transition: "opacity 0.8s ease 0.5s",
+              }}
+            >
+              <div className="relative flex h-3 w-3 items-center justify-center">
+                <div className="absolute h-full w-full animate-ping rounded-full bg-emerald-500 opacity-20" />
+                <div className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
+              </div>
+              <p className="text-sm font-medium text-muted-foreground/80">
                 Trusted by forward-thinking teams building modern customer
                 experiences.
               </p>
             </div>
           </div>
-        </div>
-      </aside>
+        </aside>
 
-      {/* ─── Right: Auth content area ─── */}
-      <main className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 py-12 sm:px-8">
-        {/* Mobile logo – only visible below lg breakpoint */}
-        <div
-          className="mb-10 flex flex-col items-center gap-3 lg:hidden"
-          style={{
-            opacity: mounted ? 1 : 0,
-            transform: mounted ? "translateY(0)" : "translateY(8px)",
-            transition: "opacity 0.5s ease, transform 0.5s ease",
-          }}
-        >
-          <div className="flex items-center gap-2.5">
-            <VocaliLogo className="text-primary" />
-            <span className="text-lg font-semibold tracking-tight text-foreground">
-              Vocali
-            </span>
+        {/* ─── Right: Auth content area (35%) ─── */}
+        <main className="flex items-center justify-center border-l border-border/30 bg-background/50 px-6 sm:px-12 lg:pr-[15%] xl:pr-[20%]">
+          <div className="relative w-full max-w-[420px]">
+            {/* Mobile logo – only visible below lg breakpoint */}
+            <div
+              className="mb-10 flex flex-col items-center gap-3 lg:hidden"
+              style={{
+                opacity: mounted ? 1 : 0,
+                transform: mounted ? "translateY(0)" : "translateY(8px)",
+                transition: "opacity 0.5s ease, transform 0.5s ease",
+              }}
+            >
+              <div className="flex items-center gap-2.5">
+                <VocaliLogo className="text-primary" />
+                <span className="text-2xl font-bold tracking-tight text-foreground">
+                  Vocali
+                </span>
+              </div>
+              <p className="text-center text-sm text-muted-foreground">
+                AI-powered customer communication platform
+              </p>
+            </div>
+
+            {/* Clerk component renders here */}
+            {/* Clerk component wrapper with decorative, blur-free frame */}
+            <div
+              className="relative w-full"
+              style={{
+                opacity: mounted ? 1 : 0,
+                transform: mounted
+                  ? "translateY(0) scale(1)"
+                  : "translateY(6px) scale(0.99)",
+                transition:
+                  "opacity 0.5s ease 0.15s, transform 0.5s ease 0.15s",
+              }}
+            >
+              {/* Outer soft bounding box */}
+              <div className="absolute -inset-6 rounded-[2rem] border border-border/40 bg-white/40 shadow-sm" />
+
+              {/* Inner subtle glow gradient (no blur) */}
+              <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-primary/5 via-transparent to-transparent" />
+
+              {/* Architectural corner accents */}
+              <div className="absolute -top-7 -left-7 h-8 w-8 rounded-tl-[24px] border-t-[3px] border-l-[3px] border-primary/40" />
+              <div className="absolute -top-7 -right-7 h-8 w-8 rounded-tr-[24px] border-t-[3px] border-r-[3px] border-primary/40" />
+              <div className="absolute -bottom-7 -left-7 h-8 w-8 rounded-bl-[24px] border-b-[3px] border-l-[3px] border-primary/40" />
+              <div className="absolute -right-7 -bottom-7 h-8 w-8 rounded-br-[24px] border-r-[3px] border-b-[3px] border-primary/40" />
+
+              {/* The Actual Auth Box */}
+              <div className="relative z-10 flex min-h-[460px] w-full items-center justify-center rounded-2xl bg-white shadow-xl ring-1 shadow-black/5 ring-border/50">
+                <div className="w-full">{children}</div>
+              </div>
+
+              {/* Minimalist footer links */}
+              <div className="absolute right-0 -bottom-16 left-0 flex items-center justify-center gap-4 text-[13px] font-medium text-muted-foreground/70">
+                <span className="flex items-center gap-1.5">
+                  Built with{" "}
+                  <Heart className="size-3.5 fill-rose-500/20 text-rose-500" />{" "}
+                  by Vocali
+                </span>
+                <span>&middot;</span>
+                <a
+                  href="https://github.com/hiverkiya/Vocali"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1.5 transition-colors hover:text-foreground"
+                >
+                  <GitBranchIcon className="size-3.5" /> Source
+                </a>
+              </div>
+            </div>
           </div>
-          <p className="text-center text-sm text-muted-foreground">
-            AI-powered customer communication platform
-          </p>
-        </div>
+        </main>
+      </div>
 
-        {/* Clerk component renders here */}
-        <div
-          className="w-full max-w-[440px]"
-          style={{
-            opacity: mounted ? 1 : 0,
-            transform: mounted
-              ? "translateY(0) scale(1)"
-              : "translateY(6px) scale(0.99)",
-            transition:
-              "opacity 0.5s ease 0.15s, transform 0.5s ease 0.15s",
-          }}
-        >
-          {children}
-        </div>
-      </main>
+      {/* Centered bottom learnings button */}
+      <LearningsButton />
     </div>
   );
 };
