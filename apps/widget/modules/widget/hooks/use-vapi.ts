@@ -15,8 +15,8 @@ export const useVapi = () => {
   const widgetSettings = useAtomValue(widgetSettingsAtom);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [transcript, setTranscript] = useState<TranscriptMessage[]>([]);
-  const VAPI_KEY = process.env.NEXT_PUBLIC_VAPI_KEY;
-  const AGENT = process.env.NEXT_PUBLIC_VAPI_AGENT;
+  const VAPI_KEY = process.env.VAPI_KEY;
+  const AGENT = process.env.VAPI_AGENT;
   if (!VAPI_KEY) {
     throw new Error("Missing NEXT_PUBLIC_VAPI_KEY");
   }

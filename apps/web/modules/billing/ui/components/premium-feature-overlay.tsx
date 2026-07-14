@@ -70,11 +70,11 @@ export const PremiumFeatureOverlay = ({
 
   return (
     <div className="relative min-h-screen">
-      <div className="pointer-events-none blur-[2px] select-none">
+      <div className="pointer-events-none-[2px] select-none">
         {children}
       </div>
 
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]" />
+      <div className="absolute inset-0 bg-black/50-[2px]" />
 
       <div className="absolute inset-0 z-40 flex items-center justify-center p-4">
         <Card className="w-full max-w-md">

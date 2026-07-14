@@ -6,12 +6,12 @@ import {
   InboxIcon,
   LayoutDashboardIcon,
   LibraryBigIcon,
-  Mic,
   PaletteIcon,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 import {
   Sidebar,
   SidebarContent,
@@ -21,13 +21,29 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
+  SidebarMenuBadge,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
 } from "@workspace/ui/components/sidebar";
 import { cn } from "@workspace/ui/lib/utils";
 
-const customerSupportItems = [
+type SidebarIcon =
+  | React.ComponentType<{ className?: string }>
+  | {
+      type: "image";
+      src: string;
+      alt: string;
+    };
+
+type SidebarItem = {
+  title: string;
+  url: string;
+  icon: SidebarIcon;
+  badge?: string;
+};
+
+const customerSupportItems: SidebarItem[] = [
   {
     title: "Conversations",
     url: "/conversations",
@@ -40,7 +56,7 @@ const customerSupportItems = [
   },
 ];
 
-const configurationItems = [
+const aiPlatformItems: SidebarItem[] = [
   {
     title: "Widget Customization",
     url: "/customization",
@@ -54,11 +70,16 @@ const configurationItems = [
   {
     title: "Voice Assistant",
     url: "/plugins/vapi",
-    icon: Mic,
+    icon: {
+      type: "image",
+      src: "/vapi.png",
+      alt: "Vapi",
+    },
+    badge: "Beta",
   },
 ];
 
-const accountItems = [
+const accountItems: SidebarItem[] = [
   {
     title: "Plans & Billing",
     url: "/billing",
@@ -77,6 +98,43 @@ export const DashboardSidebar = () => {
     return pathname.startsWith(url);
   };
 
+  const renderItems = (items: SidebarItem[]) =>
+    items.map((item) => (
+      <SidebarMenuItem key={item.title}>
+        <SidebarMenuButton
+          asChild
+          isActive={isActive(item.url)}
+          tooltip={item.title}
+          className={cn(
+            "transition-all duration-200 hover:scale-102",
+            isActive(item.url) && "bg-primary/20! font-semibold!"
+          )}
+        >
+          <Link href={item.url}>
+            {"type" in item.icon ? (
+              <Image
+                src={item.icon.src}
+                alt={item.icon.alt}
+                width={16}
+                height={16}
+                className="size-4 shrink-0 rounded-sm object-contain"
+              />
+            ) : (
+              <item.icon className="size-4 shrink-0 opacity-90" />
+            )}
+
+            <span>{item.title}</span>
+          </Link>
+        </SidebarMenuButton>
+
+        {item.badge && (
+          <SidebarMenuBadge className="text-[10px] font-medium">
+            {item.badge}
+          </SidebarMenuBadge>
+        )}
+      </SidebarMenuItem>
+    ));
+
   return (
     <Sidebar className="group" collapsible="icon">
       <SidebarHeader>
@@ -88,7 +146,7 @@ export const DashboardSidebar = () => {
                 skipInvitationScreen
                 appearance={{
                   elements: {
-                    rootBox: "!w-full !h-8",
+                    rootBox: "!w-full !h-12 border-1 rounded-xl group-data-[collapsible=icon]:border-transparent",
                     avatarBox: "!size-4 !rounded-sm",
                     organizationSwitcherTrigger:
                       "!w-full !justify-start group-data-[collapsible=icon]:!size-8 group-data-[collapsible=icon]:!p-2",
@@ -107,97 +165,45 @@ export const DashboardSidebar = () => {
       </SidebarHeader>
 
       <SidebarContent>
-        {/* Customer Support */}
         <SidebarGroup>
           <SidebarGroupLabel>Customer Support</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu className="space-y-1">
-              {customerSupportItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton
-                    asChild
-                    isActive={isActive(item.url)}
-                    tooltip={item.title}
-                    className={cn(
-                      isActive(item.url) &&
-                        "bg-linear-to-b font-semibold! from-sidebar-primary to-[#8a8aff]! text-sidebar-primary-foreground! hover:to-[#8a8aff]/90!"
-                    )}
-                  >
-                    <Link href={item.url}>
-                      <item.icon className="size-4" />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+            <SidebarMenu className="space-y-2">
+              {renderItems(customerSupportItems)}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {/* Configuration */}
         <SidebarGroup>
-          <SidebarGroupLabel>Configuration</SidebarGroupLabel>
+          <SidebarGroupLabel>AI Platform</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu className="space-y-1">
-              {configurationItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton
-                    asChild
-                    isActive={isActive(item.url)}
-                    tooltip={item.title}
-                    className={cn(
-                      isActive(item.url) &&
-                        "bg-linear-to-b from-sidebar-primary to-[#8a8aff]! font-semibold! text-sidebar-primary-foreground! font-semibold hover:to-[#8a8aff]/90!"
-                    )}
-                  >
-                    <Link href={item.url}>
-                      <item.icon className="size-4" />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+            <SidebarMenu className="space-y-2">
+              {renderItems(aiPlatformItems)}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {/* Account */}
         <SidebarGroup>
           <SidebarGroupLabel>Account</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu className="space-y-1">
-              {accountItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton
-                    asChild
-                    isActive={isActive(item.url)}
-                    tooltip={item.title}
-                    className={cn(
-                      isActive(item.url) &&
-                        "bg-linear-to-b from-sidebar-primary to-[#8a8aff]! font-semibold! text-sidebar-primary-foreground! hover:to-[#8a8aff]/90!"
-                    )}
-                  >
-                    <Link href={item.url}>
-                      <item.icon className="size-4" />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+            <SidebarMenu className="space-y-2">
+              {renderItems(accountItems)}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
       <SidebarFooter>
-        <SidebarMenu className="space-y-1">
-          <SidebarMenuItem>
+        <SidebarMenu className="space-y-2">
+          <SidebarMenuItem className="transition-all hover:scale-102">
             <UserButton
               showName
               appearance={{
                 elements: {
-                  rootBox: "!w-full !h-8",
+                  rootBox:
+                    "!w-full !h-12 border-1 rounded-xl group-data-[collapsible=icon]:border-transparent",
                   userButtonTrigger:
-                    "w-full! p-2! hover:bg-sidebar-accent! hover:text-sidebar-accent-foreground! group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2!",
+                    "w-full! p-2! hover:bg-sidebar-accent! hover:text-sidebar-accent-foreground! group-data-[collapsible=icon]:!size-8 group-data-[collapsible=icon]:!p-2!",
                   userButtonBox:
                     "!w-full !flex-row-reverse !justify-end !gap-2 group-data-[collapsible=icon]:!justify-center !text-sidebar-foreground",
                   userButtonOuterIdentifier:
@@ -207,8 +213,18 @@ export const DashboardSidebar = () => {
               }}
             />
           </SidebarMenuItem>
+
+          <SidebarMenuItem>
+            <div className="mx-2 flex items-center justify-center bg-muted/40 p-1 group-data-[collapsible=icon]:hidden">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <span className="size-2 rounded-full bg-emerald-500" />
+                AI services operational
+              </div>
+            </div>
+          </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
+
       <SidebarRail />
     </Sidebar>
   );

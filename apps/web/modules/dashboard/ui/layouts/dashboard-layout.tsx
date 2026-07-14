@@ -4,6 +4,7 @@ import { DashboardSidebar } from "@/modules/dashboard/ui/components/dashboard-si
 import {
   SidebarInset,
   SidebarProvider,
+  SidebarTrigger,
 } from "@workspace/ui/components/sidebar";
 import { Provider } from "jotai";
 import { cookies } from "next/headers";

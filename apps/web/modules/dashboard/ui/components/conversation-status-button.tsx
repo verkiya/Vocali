@@ -19,7 +19,7 @@ export const ConversationStatusButton = ({
           disabled={disabled}
           onClick={onClick}
           size="sm"
-          variant="tertiary"
+          variant="secondary"
         >
           <CheckIcon />
           Resolved
@@ -35,7 +35,7 @@ export const ConversationStatusButton = ({
           disabled={disabled}
           onClick={onClick}
           size="sm"
-          variant="warning"
+          variant="destructive"
         >
           <ArrowUpIcon />
           Escalated

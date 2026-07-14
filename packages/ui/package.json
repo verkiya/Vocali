@@ -43,7 +43,7 @@
     "@workspace/typescript-config": "workspace:*",
     "eslint": "^9.39.2",
     "tailwindcss": "^4.1.18",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.2"
   },
   "exports": {
     "./tailwind-sources.css": "./src/tailwind-sources.css",
