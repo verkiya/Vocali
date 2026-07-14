@@ -121,14 +121,12 @@ export const WidgetChatScreen = () => {
       <WidgetHeader>
         <div className="flex w-full items-center justify-between gap-2">
           <div className="flex min-w-0 items-center gap-x-2">
-            <Button size="icon" onClick={onBack} variant="outline">
+            <Button size="icon" onClick={onBack} variant="glass">
               <ArrowLeftIcon />
             </Button>
             <p>Chat</p>
           </div>
-          <Button className="shrink-0" size="icon" variant="outline">
-            <MenuIcon />
-          </Button>
+         
         </div>
       </WidgetHeader>
       <div className="flex min-h-0 flex-1 flex-col gap-y-4 p-4">
