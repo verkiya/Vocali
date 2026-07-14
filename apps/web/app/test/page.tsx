@@ -20,7 +20,7 @@ export default function ButtonTestPage() {
                 Back to Sign In
               </Link>
             </Button>
-            <Button asChild variant="primaryGradient">
+            <Button asChild variant="gradientPrimary">
               <Link href="/learnings">
                 View Learnings Page
               </Link>
@@ -52,11 +52,12 @@ export default function ButtonTestPage() {
             <p className="text-sm text-muted-foreground">Vibrant backgrounds for primary calls to action.</p>
           </div>
           <div className="flex flex-wrap items-center gap-4">
-            <Button variant="primaryGradient">Primary Gradient</Button>
-            <Button variant="oceanGradient">Ocean Gradient</Button>
-            <Button variant="sunsetGradient">Sunset Gradient</Button>
-            <Button variant="emeraldGradient">Emerald Gradient</Button>
-            <Button variant="amberGradient">Amber Gradient</Button>
+            <Button variant="gradientPrimary">Primary Gradient</Button>
+            <Button variant="gradientAI">AI Gradient</Button>
+            <Button variant="gradientOcean">Ocean Gradient</Button>
+            <Button variant="gradientSunset">Sunset Gradient</Button>
+            <Button variant="gradientEmerald">Emerald Gradient</Button>
+            <Button variant="gradientAmber">Amber Gradient</Button>
           </div>
         </section>
 
@@ -108,7 +109,7 @@ export default function ButtonTestPage() {
           
           <div className="space-y-8">
             <div className="flex flex-wrap items-end gap-4">
-              <Button variant="primaryGradient" size="lg">
+              <Button variant="gradientPrimary" size="lg">
                 <Sparkles className="mr-2" /> Large with Icon
               </Button>
               <Button variant="default" size="default">
@@ -126,7 +127,7 @@ export default function ButtonTestPage() {
               <Button variant="secondary" size="icon-lg">
                 <Settings />
               </Button>
-              <Button variant="oceanGradient" size="icon">
+              <Button variant="gradientOcean" size="icon">
                 <Zap />
               </Button>
               <Button variant="outlineDestructive" size="icon-sm">
