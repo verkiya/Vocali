@@ -1,5 +1,4 @@
 "use client";
-
 import { useAtomValue, useSetAtom } from "jotai";
 import { WidgetHeader } from "../components/widget-header";
 import { LoaderIcon } from "lucide-react";

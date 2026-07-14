@@ -30,18 +30,34 @@ const Toaster = ({ ...props }: ToasterProps) => {
       }}
       style={
         {
-          "--normal-bg": "var(--popover)",
-          "--normal-text": "var(--popover-foreground)",
+          "--normal-bg": "var(--background)",
+          "--normal-text": "var(--foreground)",
           "--normal-border": "var(--border)",
           "--border-radius": "var(--radius)",
         } as React.CSSProperties
       }
       toastOptions={{
         classNames: {
-          toast: "cn-toast",
+          toast:
+            "group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:shadow-lg",
+          description: "group-[.toast]:text-muted-foreground",
+          actionButton:
+            "group-[.toast]:bg-primary group-[.toast]:text-primary-foreground",
+          cancelButton:
+            "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground",
+          error:
+            "group toast group-[.toaster]:bg-destructive group-[.toaster]:text-white group-[.toaster]:border-destructive",
+          success:
+            "group toast group-[.toaster]:bg-primary group-[.toaster]:text-primary-foreground group-[.toaster]:border-primary",
+          warning:
+            "group toast group-[.toaster]:bg-accent group-[.toaster]:text-accent-foreground group-[.toaster]:border-accent",
+          info:
+            "group toast group-[.toaster]:bg-secondary group-[.toaster]:text-secondary-foreground group-[.toaster]:border-secondary",
         },
       }}
       {...props}
+      richColors
+      closeButton
     />
   )
 }
