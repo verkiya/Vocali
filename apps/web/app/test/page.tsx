@@ -173,6 +173,31 @@ export default function ButtonTestPage() {
           </div>
         </section>
 
+        <section className="space-y-6 rounded-2xl border border-border/50 bg-slate-50/50 p-8">
+          <div className="border-b border-border/50 pb-4">
+            <h2 className="text-2xl font-semibold">Ultimate Avatar Styles Showcase</h2>
+            <p className="text-sm text-muted-foreground">A massive preview of all available Dicebear styles, including robots, shapes, and humans.</p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6">
+            {[
+              "adventurer", "adventurer-neutral", "avataaars", "avataaars-neutral", 
+              "big-ears", "big-ears-neutral", "big-smile", "bottts", "bottts-neutral", 
+              "croodles", "croodles-neutral", "fun-emoji", "icons", "identicon", 
+              "initials", "lorelei", "lorelei-neutral", "micah", "miniavs", 
+              "notionists", "notionists-neutral", "open-peeps", "personas", 
+              "pixel-art", "pixel-art-neutral", "shapes", "thumbs", "glass"
+            ].map((style) => (
+              <div key={style} className="flex flex-col items-center gap-3 rounded-xl border border-border/50 bg-background p-4 shadow-sm hover:shadow-md transition-shadow text-center">
+                <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border bg-slate-50">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={`https://api.dicebear.com/9.x/${style}/svg?seed=Felix`} alt={style} className="h-full w-full object-cover" />
+                </div>
+                <span className="text-[10px] sm:text-xs font-medium truncate w-full">{style}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
       </div>
     </main>
   );

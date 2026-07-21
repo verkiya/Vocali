@@ -1,6 +1,6 @@
 "use client";
 
-import { glass } from "@dicebear/collection";
+import { micah } from "@dicebear/collection";
 import { createAvatar } from "@dicebear/core";
 import { useMemo } from "react";
 import { Avatar, AvatarImage } from "@workspace/ui/components/avatar";
@@ -28,9 +28,11 @@ export const DicebearAvatar = ({
       return imageUrl;
     }
 
-    const avatar = createAvatar(glass, {
+    const avatar = createAvatar(micah, {
       seed: seed.toLowerCase().trim(),
       size,
+      mouth: ["smile", "smirk", "laughing"],
+      shirt: ["collared", "crew"],
     });
 
     return avatar.toDataUri();
