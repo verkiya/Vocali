@@ -29,6 +29,7 @@ import { ConversationStatusIcon } from "@workspace/ui/components/conversation-st
 import { useAtomValue, useSetAtom } from "jotai/react";
 import { statusFilterAtom } from "../../atoms";
 import { Skeleton } from "@workspace/ui/components/skeleton";
+import { SidebarRail, SidebarTrigger } from "@workspace/ui/components/sidebar";
 
 export const ConversationsPanel = () => {
   const pathname = usePathname();
@@ -60,7 +61,7 @@ export const ConversationsPanel = () => {
 
   return (
     <div className="flex h-full w-full flex-col bg-background text-sidebar-foreground">
-      <div className="flex flex-col gap-3.5 border-b p-2">
+      <div className="flex justify-between gap-3.5 border-b p-2">
         <Select
           defaultValue="all"
           onValueChange={(value) =>
@@ -100,6 +101,7 @@ export const ConversationsPanel = () => {
             </SelectItem>
           </SelectContent>
         </Select>
+        <div><SidebarTrigger /></div>
       </div>
       {isLoadingFirstPage ? (
         <SkeletonConversations />
@@ -124,7 +126,7 @@ export const ConversationsPanel = () => {
                   className={cn(
                     "relative flex cursor-pointer items-start gap-3 border-b p-4 py-5 text-sm leading-tight hover:bg-accent hover:text-accent-foreground",
                     pathname === `/conversations/${conversation._id}` &&
-                      "bg-accent text-accent-foreground"
+                    "bg-accent text-accent-foreground font-bold"
                   )}
                   href={`/conversations/${conversation._id}`}
                 >
@@ -132,7 +134,7 @@ export const ConversationsPanel = () => {
                     className={cn(
                       "absolute top-1/2 left-0 h-[64%] w-1 -translate-y-1/2 rounded-r-full bg-neutral-300 opacity-0 transition-opacity",
                       pathname === `/conversations/${conversation._id}` &&
-                        "opacity-100"
+                      "opacity-100"
                     )}
                   />
 
@@ -144,7 +146,7 @@ export const ConversationsPanel = () => {
                   />
                   <div className="flex-1">
                     <div className="flex w-full items-center gap-2">
-                      <span className="truncate font-bold">
+                      <span className="truncate">
                         {conversation.contactSession.name}
                       </span>
                       <span className="ml-auto shrink-0 text-xs text-muted-foreground">
