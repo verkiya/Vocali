@@ -51,7 +51,7 @@ export const WidgetInboxScreen = () => {
       <WidgetHeader>
         <div className="flex items-center gap-x-2">
           <Button
-            variant="transparent"
+            variant="neonPurple"
             size="icon"
             onClick={() => setScreen("selection")}
           >

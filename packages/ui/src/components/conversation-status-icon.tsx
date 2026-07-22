@@ -9,15 +9,15 @@ interface ConversationStatusIconProps {
 const statusConfig = {
   resolved: {
     icon: CheckIcon,
-    bgColor: "bg-[#53d142]",
+    bgColor: "bg-emerald-400",
   },
   unresolved: {
     icon: ArrowRightIcon,
-    bgColor: "bg-destructive",
+    bgColor: "bg-red-400",
   },
   escalated: {
     icon: ArrowUpIcon,
-    bgColor: "bg-yellow-500",
+    bgColor: "bg-amber-400",
   },
 } as const;
 
