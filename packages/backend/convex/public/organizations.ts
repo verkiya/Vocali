@@ -5,7 +5,7 @@ import { action } from "../_generated/server";
 const clerkClient = createClerkClient({
   secretKey: process.env.CLERK_SECRET_KEY || "",
 });
-
+// Actions are used for third-party service interactions in Convex
 export const validate = action({
   args: {
     organizationId: v.string(),

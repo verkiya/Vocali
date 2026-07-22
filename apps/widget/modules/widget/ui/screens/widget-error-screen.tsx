@@ -1,9 +1,9 @@
 "use client";
 
 import { useAtomValue } from "jotai";
+import { AlertCircleIcon, RefreshCwIcon } from "lucide-react";
 import { errorMessageAtom } from "../../atoms/widget-atoms";
 import { WidgetHeader } from "../components/widget-header";
-import { AlertTriangleIcon, RefreshCwIcon } from "lucide-react";
 import { Button } from "@workspace/ui/components/button";
 
 export const WidgetErrorScreen = () => {
@@ -12,36 +12,46 @@ export const WidgetErrorScreen = () => {
   return (
     <>
       <WidgetHeader>
-        <div className="flex flex-col gap-y-2 px-2 py-6 font-semibold">
-          <p className="text-3xl">Something went wrong</p>
-          <p className="text-sm text-gray-500">
-            We couldn&apos;t start your session
+        <div className="flex flex-col gap-y-2 px-4 py-6">
+          <p className="text-2xl font-semibold tracking-tight">
+            Unable to connect
+          </p>
+
+          <p className="text-sm text-muted-foreground">
+            We couldn&apos;t start your conversation right now
           </p>
         </div>
       </WidgetHeader>
 
-      <div className="flex flex-1 items-center justify-center p-4">
-        <div className="w-full max-w-xs rounded-xl border border-gray-200 bg-white px-4 py-5 text-center shadow-sm">
-          <div className="mx-auto mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-red-50">
-            <AlertTriangleIcon
-              className="h-10 w-10 text-red-400"
+      <div className="flex flex-1 items-center justify-center p-5">
+        <div className="w-full max-w-sm rounded-2xl border bg-background p-6 text-center shadow-sm">
+          <div className="mx-auto mb-4 flex size-12 items-center justify-center rounded-full bg-[#7266ff]/20">
+            <AlertCircleIcon
+              className="size-6 text-[#7266ff]!"
               strokeWidth={2}
             />
           </div>
 
-          <p className="text-sm font-semibold text-gray-900">Error</p>
+          <h3 className="text-sm font-semibold">
+            Connection interrupted
+          </h3>
 
-          <p className="mt-1 text-xs leading-relaxed text-gray-400">
-            {errorMessage || "Invalid configuration"}
+          <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+            {errorMessage || "The assistant could not be initialized. Please try again."}
           </p>
 
           <Button
-            className="group mt-4 w-full gap-1.5 rounded-lg bg-[#7266ff]/70 py-1.5 text-xs font-semibold text-white shadow-sm transition-all hover:bg-[#5f54e6]/80 active:scale-[0.98]"
             onClick={() => window.location.reload()}
+            variant="gradientPrimary"
+            className="group mt-5 w-full gap-2 rounded-xl text-xs font-semibold text-primary-foreground shadow-sm transition-all  active:scale-[0.98]"
           >
-            <RefreshCwIcon className="h-3 w-3 transition-transform duration-500 group-hover:rotate-180" />
-            Try again
+            <RefreshCwIcon className="size-3.5 transition-transform duration-500 group-hover:rotate-180" />
+            Reconnect
           </Button>
+
+          <p className="mt-4 text-[11px] text-muted-foreground">
+            URL should be valid /?organizationId=
+          </p>
         </div>
       </div>
     </>

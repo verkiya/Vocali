@@ -100,14 +100,14 @@ export const DashboardSidebar = () => {
 
   const renderItems = (items: SidebarItem[]) =>
     items.map((item) => (
-      <SidebarMenuItem key={item.title}>
+      <SidebarMenuItem key={item.title} >
         <SidebarMenuButton
           asChild
           isActive={isActive(item.url)}
           tooltip={item.title}
           className={cn(
-            "transition-all duration-200 hover:scale-102",
-            isActive(item.url) && "bg-primary/20! font-semibold!"
+            "transition-all duration-200 hover:scale-102 hover:bg-primary/20 ",
+            isActive(item.url) && "font-semibold! bg-gradient-to-b from-sidebar-primary to-[#8a8aff]! text-sidebar-primary-foreground! hover:to[#8a8aff]/90"
           )}
         >
           <Link href={item.url}>
@@ -168,7 +168,7 @@ export const DashboardSidebar = () => {
         <SidebarGroup>
           <SidebarGroupLabel>Customer Support</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu className="space-y-2">
+            <SidebarMenu className="space-y-2 ">
               {renderItems(customerSupportItems)}
             </SidebarMenu>
           </SidebarGroupContent>

@@ -4,6 +4,7 @@ import { Providers } from "@/components/providers";
 import { cn } from "@workspace/ui/lib/utils";
 import { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
+import { shadcn } from "@clerk/ui/themes";
 import { Toaster } from "@workspace/ui/components/sonner";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
@@ -37,7 +38,7 @@ export default function RootLayout({
     >
       <body>
         <ClerkProvider
-        
+          appearance={{ theme: shadcn }}
         >
           <Providers>
             <Toaster />

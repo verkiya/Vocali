@@ -96,8 +96,9 @@ export const WidgetAuthScreen = () => {
                 <FormControl>
                   <Input
                     {...field}
-                    placeholder="e.g. John Doe"
-                    className="h-11 border border-gray-300 bg-white transition focus-visible:border-[#7266ff]/40 focus-visible:ring-2 focus-visible:ring-[#7266ff]/40"
+                    placeholder="John Doe"
+                    type="text"
+                    className="h-11 border border-gray-300 bg-white transition focus-visible:border-[#7266ff]/40 focus-visible:ring-1 focus-visible:ring-[#7266ff]/40"
                   />
                 </FormControl>
                 <FormMessage />
@@ -113,8 +114,9 @@ export const WidgetAuthScreen = () => {
                 <FormControl>
                   <Input
                     {...field}
-                    placeholder="e.g. john.doe@example.com"
-                    className="h-11 border border-gray-300 bg-white transition focus-visible:border-[#7266ff]/40 focus-visible:ring-2 focus-visible:ring-[#7266ff]/40"
+                    placeholder="johndoe@example.com"
+                    type="email"
+                    className="h-11 border border-gray-300 bg-white transition focus-visible:border-[#7266ff]/40 focus-visible:ring-1 focus-visible:ring-[#7266ff]/40"
                   />
                 </FormControl>
                 <FormMessage />
@@ -126,7 +128,8 @@ export const WidgetAuthScreen = () => {
             type="submit"
             size="lg"
             disabled={form.formState.isSubmitting}
-            className="mt-2 h-11 bg-[#7266ff]/60 font-semibold text-white shadow-md transition-all hover:bg-[#5f54e6]/80 active:scale-[0.98]"
+            variant="gradientAI"
+            className="hover:scale-101!"
           >
             Continue
           </Button>

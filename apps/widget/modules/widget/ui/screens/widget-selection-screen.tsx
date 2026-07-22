@@ -64,15 +64,16 @@ export const WidgetSelectionScreen = () => {
       <WidgetHeader>
         <div className="flex flex-col justify-between gap-y-2 px-2 py-6 font-semibold">
           <p className="text-3xl">Hi there! 👋</p>
-          <p className="text-lg">Let&apos;s get you started</p>
+          <p className="text-lg text-muted-foreground">What Do You Want To Do?</p>
         </div>
       </WidgetHeader>
 
       <div className="flex flex-1 flex-col gap-y-4 overflow-y-auto p-4">
         <Button
-          className="h-16 w-full justify-between"
-          variant="outline"
+          className="h-16 w-full border-2! hover:scale-101! justify-between"
+          variant="softPurple"
           onClick={handleNewConversation}
+
           disabled={isPending}
         >
           <div className="flex items-center gap-x-2">
@@ -82,8 +83,8 @@ export const WidgetSelectionScreen = () => {
         </Button>
         {hasVapiSecrets && widgetSettings?.vapiSettings?.assistantId && (
           <Button
-            className="h-16 w-full justify-between"
-            variant="outline"
+            className="h-16 w-full border-2! hover:scale-101! justify-between"
+            variant="softPurple"
             onClick={() => setScreen("voice")}
             disabled={isPending}
           >
@@ -96,8 +97,8 @@ export const WidgetSelectionScreen = () => {
         )}
         {hasVapiSecrets && widgetSettings?.vapiSettings?.phoneNumber && (
           <Button
-            className="h-16 w-full justify-between"
-            variant="outline"
+            className="h-16 w-full border-2! hover:scale-101! justify-between"
+            variant="softPurple"
             onClick={() => setScreen("contact")}
             disabled={isPending}
           >

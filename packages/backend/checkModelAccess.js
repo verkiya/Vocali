@@ -1,7 +1,9 @@
 import OpenAI from "openai";
-import "dotenv/config";
+import dotenv from "dotenv";
+dotenv.config({ path: ".env.local" });
+
 const client = new OpenAI({
-  apiKey:"KEY HERE"
+  apiKey: process.env.OPENAI_API_KEY
 });
 const models = await client.models.list();
 

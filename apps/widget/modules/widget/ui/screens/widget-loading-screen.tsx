@@ -1,5 +1,4 @@
 "use client";
-
 import { useAtomValue, useSetAtom } from "jotai";
 import { WidgetHeader } from "../components/widget-header";
 import { LoaderIcon } from "lucide-react";
@@ -170,7 +169,7 @@ export const WidgetLoadingScreen = ({
       <div className="flex flex-1 items-center justify-center p-4">
         <div className="w-full max-w-xs animate-in rounded-xl border border-gray-200 bg-white px-5 py-6 text-center shadow-sm duration-300 zoom-in-95 fade-in">
           <div className="relative mx-auto mb-4 flex h-12 w-12 items-center justify-center">
-            <div className="absolute inset-0 animate-pulse rounded-full bg-[#7266ff]/30 blur-md" />
+            <div className="absolute inset-0 animate-pulse rounded-full bg-[#7266ff]/30 " />
 
             <LoaderIcon
               className="relative z-10 h-7 w-7 animate-spin text-[#7266ff]/70"

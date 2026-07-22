@@ -58,7 +58,7 @@ export const WidgetVoiceScreen = () => {
       ) : (
         <div className="flex h-full flex-1 flex-col items-center justify-center gap-y-6 text-center">
           <div className="relative">
-            <div className="absolute inset-0 animate-pulse rounded-full bg-primary/20 blur-xl" />
+            <div className="absolute inset-0 animate-pulse rounded-full bg-primary/20 " />
             <div className="relative flex items-center justify-center rounded-full border bg-background p-4 shadow-md">
               <MicIcon className="size-7 text-primary" />
             </div>

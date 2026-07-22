@@ -1,7 +1,9 @@
+"use client";
+
 import { Button } from "@workspace/ui/components/button";
 import { ArrowRight, LogIn, Mail, Settings, Sparkles, User, Zap } from "lucide-react";
 import Link from "next/link";
-
+import { toast } from "sonner";
 export default function ButtonTestPage() {
   return (
     <main className="min-h-screen bg-background p-10 lg:p-20">
@@ -144,6 +146,55 @@ export default function ButtonTestPage() {
                 Responsive Full Width (on mobile)
               </Button>
             </div>
+          </div>
+        </section>
+
+        <section className="space-y-6 rounded-2xl border border-border/50 bg-slate-50/50 p-8">
+          <div className="border-b border-border/50 pb-4">
+            <h2 className="text-2xl font-semibold">Toast Notifications</h2>
+            <p className="text-sm text-muted-foreground">Click to showcase the custom toast variants.</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-4">
+            <Button variant="default" onClick={() => toast("Default Toast", { description: "This is a default toast notification." })}>
+              Default Toast
+            </Button>
+            <Button variant="success" onClick={() => toast.success("Success!", { description: "Your action was successful." })}>
+              Success Toast
+            </Button>
+            <Button variant="destructive" onClick={() => toast.error("Error!", { description: "Something went wrong." })}>
+              Error Toast
+            </Button>
+            <Button variant="accent" onClick={() => toast.warning("Warning!", { description: "Please be careful with this action." })}>
+              Warning Toast
+            </Button>
+            <Button variant="info" onClick={() => toast.info("Info", { description: "Here is some useful information." })}>
+              Info Toast
+            </Button>
+          </div>
+        </section>
+
+        <section className="space-y-6 rounded-2xl border border-border/50 bg-slate-50/50 p-8">
+          <div className="border-b border-border/50 pb-4">
+            <h2 className="text-2xl font-semibold">Ultimate Avatar Styles Showcase</h2>
+            <p className="text-sm text-muted-foreground">A massive preview of all available Dicebear styles, including robots, shapes, and humans.</p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6">
+            {[
+              "adventurer", "adventurer-neutral", "avataaars", "avataaars-neutral", 
+              "big-ears", "big-ears-neutral", "big-smile", "bottts", "bottts-neutral", 
+              "croodles", "croodles-neutral", "fun-emoji", "icons", "identicon", 
+              "initials", "lorelei", "lorelei-neutral", "micah", "miniavs", 
+              "notionists", "notionists-neutral", "open-peeps", "personas", 
+              "pixel-art", "pixel-art-neutral", "shapes", "thumbs", "glass"
+            ].map((style) => (
+              <div key={style} className="flex flex-col items-center gap-3 rounded-xl border border-border/50 bg-background p-4 shadow-sm hover:shadow-md transition-shadow text-center">
+                <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border bg-slate-50">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={`https://api.dicebear.com/9.x/${style}/svg?seed=Felix`} alt={style} className="h-full w-full object-cover" />
+                </div>
+                <span className="text-[10px] sm:text-xs font-medium truncate w-full">{style}</span>
+              </div>
+            ))}
           </div>
         </section>
 
