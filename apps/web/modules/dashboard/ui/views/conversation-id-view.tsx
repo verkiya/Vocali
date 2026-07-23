@@ -142,10 +142,8 @@ export const ConversationIdView = ({
 
   return (
     <div className="flex h-full flex-col bg-muted">
-      <header className="flex items-center justify-between border-b bg-background p-2.5">
-        <Button size="sm" variant="ghost">
-          <MoreHorizontalIcon />
-        </Button>
+      <header className="flex items-center justify-end border-b bg-background p-2.5">
+
         {!!conversation && (
           <ConversationStatusButton
             onClick={handleToggleStatus}
