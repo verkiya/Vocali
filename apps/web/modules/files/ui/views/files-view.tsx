@@ -88,9 +88,9 @@ export const FilesView = () => {
 
           <div className="mt-8 rounded-lg border bg-background">
             <div className="flex items-center justify-end border-b px-6 py-4">
-              <Button onClick={() => setUploadDialogOpen(true)}>
+              <Button onClick={() => setUploadDialogOpen(true)} variant="gradientAI" size="lg">
                 <PlusIcon />
-                Add New
+                Add New File
               </Button>
             </div>
             <Table>
@@ -100,7 +100,7 @@ export const FilesView = () => {
                   <TableHead className="px-6 py-4 font-medium">Type</TableHead>
                   <TableHead className="px-6 py-4 font-medium">Size</TableHead>
                   <TableHead className="px-6 py-4 font-medium">
-                    Actions
+                    Remove
                   </TableHead>
                 </TableRow>
               </TableHeader>
@@ -119,8 +119,11 @@ export const FilesView = () => {
                   if (files.results.length === 0) {
                     return (
                       <TableRow>
-                        <TableCell className="h-24 text-center" colSpan={4}>
-                          No files found
+                        <TableCell className="h-48 text-center text-muted-foreground" colSpan={4}>
+                          <div className="flex flex-col items-center justify-center space-y-1">
+                            <p className="text-base font-medium text-foreground">No files found</p>
+                            <p className="text-sm">Upload PDF, CSV, TXT, or DOCX files to your knowledge base.</p>
+                          </div>
                         </TableCell>
                       </TableRow>
                     );
@@ -143,26 +146,17 @@ export const FilesView = () => {
                         {file.size}
                       </TableCell>
                       <TableCell className="px-6 py-4">
-                        <DropdownMenu>
-                          <DropdownMenuTrigger asChild>
-                            <Button
-                              className="size-8 p-0"
-                              size="sm"
-                              variant="ghost"
-                            >
-                              <MoreHorizontalIcon />
-                            </Button>
-                          </DropdownMenuTrigger>
-                          <DropdownMenuContent align="end">
-                            <DropdownMenuItem
-                              className="text-destructive"
-                              onClick={() => handleDeleteClick(file)}
-                            >
-                              <TrashIcon className="mr-2 size-4" />
-                              Delete
-                            </DropdownMenuItem>
-                          </DropdownMenuContent>
-                        </DropdownMenu>
+
+                        <Button
+                          className="size-8 p-0"
+                          size="sm"
+                          onClick={() => handleDeleteClick(file)}
+                          variant="destructive"
+                        >
+                          <TrashIcon className=" size-4" />
+
+                        </Button>
+
                       </TableCell>
                     </TableRow>
                   ));
