@@ -19,7 +19,7 @@ export const ConversationStatusButton = ({
           disabled={disabled}
           onClick={onClick}
           size="sm"
-          variant="secondary"
+          className="bg-emerald-600 text-white hover:bg-emerald-700"
         >
           <CheckIcon />
           Resolved
@@ -35,7 +35,7 @@ export const ConversationStatusButton = ({
           disabled={disabled}
           onClick={onClick}
           size="sm"
-          variant="destructive"
+          className="bg-amber-500 text-white hover:bg-amber-600"
         >
           <ArrowUpIcon />
           Escalated
@@ -50,7 +50,7 @@ export const ConversationStatusButton = ({
         disabled={disabled}
         onClick={onClick}
         size="sm"
-        variant="destructive"
+        className="bg-red-600 text-white hover:bg-red-700 "
       >
         <ArrowRightIcon />
         Unresolved

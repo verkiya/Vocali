@@ -1,8 +1,6 @@
 import { openai } from "@ai-sdk/openai";
 import { Agent } from "@convex-dev/agent";
 import { components } from "../../../_generated/api";
-import { resolveConversation } from "../tools/resolveConversation";
-import { escalateConversation } from "../tools/escalateConversation";
 import { SUPPORT_AGENT_PROMPT } from "../constants";
 export const supportAgent = new Agent(components.agent, {
   name: "support-agent",
