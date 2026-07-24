@@ -16,10 +16,10 @@ export const ConversationsView = () => {
             <Image alt="Logo" height={40} width={40} src="/icon.svg" />
           </div>
 
-          <div>
-            <h2 className="text-xl font-semibold">Operator Dashboard</h2>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Resolve customer queries
+          <div className="space-y-1.5">
+            <h2 className="text-xl font-semibold tracking-tight">Operator Dashboard</h2>
+            <p className="mx-auto max-w-[260px] text-sm leading-relaxed text-muted-foreground">
+              Select a conversation from the sidebar to view details, review history, and respond to customer queries.
             </p>
           </div>
         </div>

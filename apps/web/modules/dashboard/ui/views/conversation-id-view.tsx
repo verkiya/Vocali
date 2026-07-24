@@ -142,10 +142,8 @@ export const ConversationIdView = ({
 
   return (
     <div className="flex h-full flex-col bg-muted">
-      <header className="flex items-center justify-between border-b bg-background p-2.5">
-        <Button size="sm" variant="ghost">
-          <MoreHorizontalIcon />
-        </Button>
+      <header className="flex items-center justify-end border-b bg-background p-2.5">
+
         {!!conversation && (
           <ConversationStatusButton
             onClick={handleToggleStatus}
@@ -250,10 +248,8 @@ export const ConversationIdView = ({
 export const ConversationIdViewLoading = () => {
   return (
     <div className="flex h-full flex-col bg-muted">
-      <header className="flex items-center justify-between border-b bg-background p-2.5">
-        <Button disabled size="sm" variant="ghost">
-          <MoreHorizontalIcon />
-        </Button>
+      <header className="flex h-[53px] items-center justify-end border-b bg-background p-2.5">
+        <Skeleton className="h-8 w-24 rounded-md" />
       </header>
       <AIConversation className="max-h-[calc(100vh-180px)]">
         <AIConversationContent>
