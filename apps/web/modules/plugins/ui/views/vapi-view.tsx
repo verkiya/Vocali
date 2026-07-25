@@ -145,7 +145,7 @@ const VapiPluginForm = ({
               )}
             />
             <DialogFooter>
-              <Button disabled={form.formState.isSubmitting} type="submit">
+              <Button disabled={form.formState.isSubmitting} className="w-full" variant="default" type="submit">
                 {form.formState.isSubmitting ? "Connecting..." : "Connect"}
               </Button>
             </DialogFooter>
@@ -181,13 +181,13 @@ const VapiPluginRemoveForm = ({
     <Dialog onOpenChange={setOpen} open={open}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Disconnect Vapi</DialogTitle>
+          <DialogTitle>Disconnect VAPI</DialogTitle>
         </DialogHeader>
         <DialogDescription>
-          Are you sure you want to disconnect the Vapi plugin?
+          Are you sure you want to disconnect the VAPI plugin?
         </DialogDescription>
         <DialogFooter>
-          <Button onClick={onSubmit} variant="destructive">
+          <Button onClick={onSubmit} className="w-full" variant="destructive">
             Disconnect
           </Button>
         </DialogFooter>
@@ -216,9 +216,9 @@ export const VapiView = () => {
       <div className="flex min-h-screen flex-col bg-muted p-8">
         <div className="mx-auto w-full max-w-screen-md">
           <div className="space-y-2">
-            <h1 className="text-2xl md:text-4xl">Vapi Plugin</h1>
+            <h1 className="text-2xl md:text-4xl">VAPI Plugin</h1>
             <p className="text-muted-foreground">
-              Connect Vapi to enable AI voice calls and phone support
+              Connect VAPI to enable AI voice calls and phone support
             </p>
           </div>
 
@@ -228,7 +228,7 @@ export const VapiView = () => {
             ) : (
               <PluginCard
                 serviceImage="/vapi.png"
-                serviceName="Vapi"
+                serviceName="VAPI"
                 features={vapiFeatures}
                 isDisabled={vapiPlugin === undefined}
                 onSubmit={toggleConnection}

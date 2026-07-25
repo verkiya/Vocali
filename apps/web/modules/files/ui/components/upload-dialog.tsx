@@ -1,7 +1,7 @@
 "use client";
-
 import { useAction } from "convex/react";
 import { useState } from "react";
+import { UploadIcon } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -141,26 +141,44 @@ export const UploadDialog = ({
               "application/pdf": [".pdf"],
               "text/csv": [".csv"],
               "text/plain": [".txt"],
+              "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [".docx"]
             }}
             disabled={isUploading}
             maxFiles={1}
             onDrop={handleFileDrop}
             src={uploadedFiles}
           >
-            <DropzoneEmptyState />
+            <DropzoneEmptyState>
+              <div className="flex flex-col items-center justify-center">
+                <div className="flex size-8 items-center justify-center rounded-md bg-muted text-muted-foreground">
+                  <UploadIcon size={16} />
+                </div>
+                <p className="my-2 w-full truncate text-sm font-medium text-wrap">
+                  Upload a document
+                </p>
+                <p className="w-full text-xs text-wrap text-muted-foreground">
+                  Drag and drop or click to upload
+                </p>
+                <p className="mt-2 text-xs text-wrap text-muted-foreground">
+                  Supported formats: PDF, CSV, TXT, DOCX (Max 10MB)
+                </p>
+              </div>
+            </DropzoneEmptyState>
             <DropzoneContent />
           </Dropzone>
         </div>
 
-        <DialogFooter>
+        <DialogFooter >
           <Button
             disabled={isUploading}
             onClick={handleCancel}
             variant="outline"
+            size="lg"
           >
             Cancel
           </Button>
           <Button
+            size="lg"
             onClick={handleUpload}
             disabled={
               uploadedFiles.length === 0 || isUploading || !uploadForm.category

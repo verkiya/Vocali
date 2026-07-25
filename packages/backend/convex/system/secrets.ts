@@ -1,7 +1,8 @@
+"use node";
 import { v } from "convex/values";
 import { internal } from "../_generated/api";
 import { internalAction } from "../_generated/server";
-import { upsertSecret } from "../lib/secrets";
+import { encryptSecret } from "../lib/secrets";
 
 export const upsert = internalAction({
   args: {
@@ -10,13 +11,16 @@ export const upsert = internalAction({
     value: v.any(),
   },
   handler: async (ctx, args) => {
-    const secretName = `tenant/${args.organizationId}/${args.service}`;
-
-    await upsertSecret(secretName, args.value);
+    // ENCRYPTION EXPLANATION:
+    // When the user submits their keys in the dashboard, they are sent here as a single package:
+    // { privateApiKey: "...", publicApiKey: "..." }
+    // We encrypt that entire object into one single Base64 string so that both keys are safely 
+    // secured at rest using just one database column.
+    const encryptedKey = encryptSecret(args.value);
 
     await ctx.runMutation(internal.system.plugins.upsert, {
       service: args.service,
-      secretName,
+      encryptedKey,
       organizationId: args.organizationId,
     });
 

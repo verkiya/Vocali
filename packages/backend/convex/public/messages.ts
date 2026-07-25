@@ -62,7 +62,7 @@ export const create = action({
       conversation.status === "unresolved" && subscription?.status === "active";
 
     if (shouldTriggerAgent) {
-      await supportAgent.generateText(
+      const response = await supportAgent.generateText(
         ctx,
         { threadId: args.threadId },
         {
@@ -74,6 +74,22 @@ export const create = action({
           },
         }
       );
+
+      if (response.toolResults && response.toolResults.length > 0) {
+        const lastToolResult = response.toolResults[response.toolResults.length - 1];
+        const resultText = (lastToolResult as any).output;
+        if (typeof resultText === "string") {
+          // Because we save this AFTER generateText finishes, it goes into the DB 
+          // AFTER the tool_result message, satisfying OpenAI's strict ordering rules!
+          await supportAgent.saveMessage(ctx, {
+            threadId: args.threadId,
+            message: {
+              role: "assistant",
+              content: resultText,
+            }
+          });
+        }
+      }
     } else {
       await saveMessage(ctx, components.agent, {
         threadId: args.threadId,

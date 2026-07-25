@@ -1,7 +1,8 @@
+"use node";
 import { v } from "convex/values";
 import { internal } from "../_generated/api";
 import { action } from "../_generated/server";
-import { getSecretValue, parseSecretString } from "../lib/secrets";
+import { decryptSecret } from "../lib/secrets";
 
 export const getVapiSecrets = action({
   args: {
@@ -20,14 +21,15 @@ export const getVapiSecrets = action({
       return null;
     }
 
-    const secretName = plugin.secretName;
+    const encryptedKey = plugin.encryptedKey as string;
 
-    const secret = await getSecretValue(secretName);
-
-    const secretData = parseSecretString<{
+    // DECRYPTION EXPLANATION (FRONTEND EXPOSURE):
+    // The database stores both the public and private keys in a single encrypted string.
+    // We decrypt the string here in memory to access the full object.
+    const secretData = decryptSecret<{
       privateApiKey: string;
       publicApiKey: string;
-    }>(secret);
+    }>(encryptedKey);
 
     if (!secretData) {
       return null;
@@ -41,6 +43,10 @@ export const getVapiSecrets = action({
       return null;
     }
 
+    // SECURITY GUARANTEE:
+    // When the frontend widget loads, it needs the public key to connect a user to Vapi.
+    // We purposely throw away the private key here and *only* send the publicApiKey back 
+    // to the browser. The private key never leaks to the frontend!
     return {
       publicApiKey: secretData.publicApiKey,
     };
