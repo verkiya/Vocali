@@ -1,7 +1,8 @@
+"use node";
 import { VapiClient, Vapi } from "@vapi-ai/server-sdk";
 import { internal } from "../_generated/api";
 import { action } from "../_generated/server";
-import { getSecretValue, parseSecretString } from "../lib/secrets";
+import { decryptSecret } from "../lib/secrets";
 import { ConvexError } from "convex/values";
 
 export const getAssistants = action({
@@ -40,12 +41,16 @@ export const getAssistants = action({
       });
     }
 
-    const secretName = plugin.secretName;
-    const secretValue = await getSecretValue(secretName);
-    const secretData = parseSecretString<{
+    const encryptedKey = plugin.encryptedKey as string;
+    
+    // DECRYPTION EXPLANATION (BACKEND ADMIN):
+    // The database stores both keys as a single encrypted string.
+    // Here on the backend, we decrypt it to grab the privateApiKey, 
+    // which allows the backend server to make authorized admin calls to Vapi.
+    const secretData = decryptSecret<{
       privateApiKey: string;
       publicApiKey: string;
-    }>(secretValue);
+    }>(encryptedKey);
 
     if (!secretData) {
       throw new ConvexError({
@@ -107,12 +112,11 @@ export const getPhoneNumbers = action({
       });
     }
 
-    const secretName = plugin.secretName;
-    const secretValue = await getSecretValue(secretName);
-    const secretData = parseSecretString<{
+    const encryptedKey = plugin.encryptedKey as string;
+    const secretData = decryptSecret<{
       privateApiKey: string;
       publicApiKey: string;
-    }>(secretValue);
+    }>(encryptedKey);
 
     if (!secretData) {
       throw new ConvexError({
