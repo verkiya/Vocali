@@ -54,13 +54,23 @@ export const search = createTool({
       model: openai.chat("gpt-5.4-mini"),
     });
 
-    await supportAgent.saveMessage(ctx, {
-      threadId: ctx.threadId,
-      message: {
-        role: "assistant",
-        content: response.text,
-      },
-    });
+    /* 
+      Why this is commented out:
+      When using @convex-dev/agent, the framework automatically handles saving the tool result
+      and the final response to the database in the exact order OpenAI requires.
+      By manually calling supportAgent.saveMessage({ role: "assistant" }) here, 
+      we inject an extra assistant message right in the middle of the tool execution flow.
+      This breaks OpenAI's strict rule that a 'tool_call' must be immediately followed by a 'tool' message,
+      causing a crash when asking follow-up questions.
+      
+      await supportAgent.saveMessage(ctx, {
+        threadId: ctx.threadId,
+        message: {
+          role: "assistant",
+          content: response.text,
+        },
+      });
+    */
 
     return response.text;
   },
