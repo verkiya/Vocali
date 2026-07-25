@@ -112,14 +112,14 @@ function decrypt(encryptedData: string): string {
     throw new Error("Invalid encrypted data format");
   }
 
-  const iv = Buffer.from(parts[0], "base64");
-  const authTag = Buffer.from(parts[1], "base64");
-  const encryptedText = parts[2];
+  const iv = Buffer.from(parts[0] as string, "base64");
+  const authTag = Buffer.from(parts[1] as string, "base64");
+  const encryptedText = parts[2] as string;
 
   const decipher = crypto.createDecipheriv(ALGORITHM, key, iv);
   decipher.setAuthTag(authTag);
 
-  let decrypted = decipher.update(encryptedText, "base64", "utf8");
+  let decrypted: string = decipher.update(encryptedText as string, "base64", "utf8");
   decrypted += decipher.final("utf8");
 
   return decrypted;
