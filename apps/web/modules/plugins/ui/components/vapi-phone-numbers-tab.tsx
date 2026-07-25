@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircleIcon, PhoneIcon, XCircleIcon } from "lucide-react";
+import { CheckCircleIcon, Loader2Icon, PhoneIcon, XCircleIcon } from "lucide-react";
 import { Badge } from "@workspace/ui/components/badge";
 import {
   Table,
@@ -32,9 +32,12 @@ export const VapiPhoneNumbersTab = () => {
                 <TableRow>
                   <TableCell
                     colSpan={3}
-                    className="px-6 py-8 text-center text-muted-foreground"
+                    className="h-32 text-center text-muted-foreground"
                   >
-                    Loading phone numbers...
+                    <div className="flex flex-col items-center justify-center gap-3">
+                      <Loader2Icon className="size-6 animate-spin text-purple-500" />
+                      <p className="text-sm font-medium">Loading phone numbers...</p>
+                    </div>
                   </TableCell>
                 </TableRow>
               );

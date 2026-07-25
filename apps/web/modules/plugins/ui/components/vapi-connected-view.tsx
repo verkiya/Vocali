@@ -41,7 +41,7 @@ export const VapiConnectedView = ({ onDisconnect }: VapiConnectedViewProps) => {
                 src="/vapi.png"
               />
               <div>
-                <CardTitle>Vapi Integration</CardTitle>
+                <CardTitle>VAPI Integration</CardTitle>
                 <CardDescription>
                   Manage your phone numbers and AI assistants
                 </CardDescription>
@@ -64,7 +64,7 @@ export const VapiConnectedView = ({ onDisconnect }: VapiConnectedViewProps) => {
                 <SettingsIcon className="size-6 text-muted-foreground" />
               </div>
               <div>
-                <CardTitle>Widget Configuration</CardTitle>
+                <CardTitle>Widget Customization</CardTitle>
                 <CardDescription>
                   Set up voice calls for your chat widget
                 </CardDescription>

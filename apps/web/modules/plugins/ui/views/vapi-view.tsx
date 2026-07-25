@@ -187,7 +187,7 @@ const VapiPluginRemoveForm = ({
           Are you sure you want to disconnect the VAPI plugin?
         </DialogDescription>
         <DialogFooter>
-          <Button onClick={onSubmit} variant="destructive">
+          <Button onClick={onSubmit} className="w-full" variant="destructive">
             Disconnect
           </Button>
         </DialogFooter>

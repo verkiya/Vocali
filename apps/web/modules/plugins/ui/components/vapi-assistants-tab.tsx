@@ -1,6 +1,6 @@
 "use client";
 
-import { BotIcon } from "lucide-react";
+import { BotIcon, Loader2Icon } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -31,9 +31,12 @@ export const VapiAssistantsTab = () => {
                 <TableRow>
                   <TableCell
                     colSpan={3}
-                    className="px-6 py-8 text-center text-muted-foreground"
+                    className="h-32 text-center text-muted-foreground"
                   >
-                    Loading assistants...
+                    <div className="flex flex-col items-center justify-center gap-3">
+                      <Loader2Icon className="size-6 animate-spin text-purple-500" />
+                      <p className="text-sm font-medium">Loading assistants...</p>
+                    </div>
                   </TableCell>
                 </TableRow>
               );
