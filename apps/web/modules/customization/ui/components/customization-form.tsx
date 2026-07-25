@@ -105,7 +105,8 @@ export const CustomizationForm = ({
                   <FormControl>
                     <Textarea
                       {...field}
-                      placeholder="Welcome message shown when chat open"
+                      className="max-h-40 overflow-y-auto"
+                      placeholder="Welcome message shown when chat opens"
                       rows={3}
                     />
                   </FormControl>
@@ -187,7 +188,7 @@ export const CustomizationForm = ({
             <CardHeader>
               <CardTitle>Voice Assistant Settings</CardTitle>
               <CardDescription>
-                Configure voice calling features powered by Vapi
+                Configure voice calling features powered by VAPI
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -197,7 +198,7 @@ export const CustomizationForm = ({
         )}
 
         <div className="flex justify-end">
-          <Button disabled={form.formState.isSubmitting} type="submit" className="size-full p-2 bg-[#7266ff]/90! hover:bg-[#7266ff]!">
+          <Button disabled={form.formState.isSubmitting} type="submit" variant="gradientPrimary" className="w-full h-10">
             Save Settings
           </Button>
         </div>
