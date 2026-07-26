@@ -15,7 +15,7 @@ export const useVapi = () => {
   const widgetSettings = useAtomValue(widgetSettingsAtom);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [transcript, setTranscript] = useState<TranscriptMessage[]>([]);
-  const VAPI_KEY = process.env.VAPI_KEY;
+  const VAPI_KEY = process.env.NEXT_PUBLIC_VAPI_KEY;
   const AGENT = process.env.VAPI_AGENT;
   if (!VAPI_KEY) {
     throw new Error("Missing NEXT_PUBLIC_VAPI_KEY");
@@ -54,15 +54,29 @@ export const useVapi = () => {
       setIsConnecting(false);
     });
 
-    vapiInstance.on("message", (message) => {
+    vapiInstance.on("message", (message: any) => {
       if (message.type === "transcript" && message.transcriptType === "final") {
-        setTranscript((prev) => [
-          ...prev,
-          {
-            role: message.role === "user" ? "user" : "assistant",
-            text: message.transcript,
-          },
-        ]);
+        setTranscript((prev) => {
+          const lastMessage = prev[prev.length - 1];
+          const newRole = message.role === "user" ? "user" : "assistant";
+
+          if (lastMessage && lastMessage.role === newRole) {
+            const newPrev = [...prev];
+            newPrev[prev.length - 1] = {
+              ...lastMessage,
+              text: lastMessage.text + " " + message.transcript,
+            };
+            return newPrev;
+          }
+
+          return [
+            ...prev,
+            {
+              role: newRole,
+              text: message.transcript,
+            },
+          ];
+        });
       }
     });
 
@@ -76,6 +90,7 @@ export const useVapi = () => {
       return;
     }
     setIsConnecting(true);
+    setTranscript([]);
 
     if (vapi) {
       // Only for testing the Vapi API, otherwise customers will provide their own Assistant IDs
