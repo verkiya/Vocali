@@ -14,6 +14,7 @@ export const DashboardLayout = async ({
   children: React.ReactNode;
 }) => {
   const cookieStore = await cookies();
+  // Using SIDEBAR_COOKIE_NAME from sidebar component does not work due to monorepo and SSR
   // Default to open on first visit (no cookie yet).
   const defaultOpen = cookieStore.get("sidebar_state")?.value === "true";
 

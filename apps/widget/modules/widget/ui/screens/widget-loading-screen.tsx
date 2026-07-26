@@ -34,6 +34,7 @@ export const WidgetLoadingScreen = ({
   const contactSessionId = useAtomValue(
     contactSessionIdAtomFamily(organizationId || "")
   );
+  // Step 1: Validate organization
   //Validating the organization
   useEffect(() => {
     if (step != "org") return;
@@ -68,6 +69,7 @@ export const WidgetLoadingScreen = ({
     validateOrganization,
     setLoadingMessage,
   ]);
+  // Step 2: Validate session (if exists)
   //Validate the session, if it exists
   const validateContactSession = useMutation(
     api.public.contactSessions.validate

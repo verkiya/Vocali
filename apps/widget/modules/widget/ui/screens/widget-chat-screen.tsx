@@ -200,7 +200,7 @@ export const WidgetChatScreen = () => {
               }
 
               return (
-                <AISuggestion
+                <AISuggestion variant="outlinePrimary"
                   key={suggestion}
                   onClick={() => {
                     form.setValue("message", suggestion, {
