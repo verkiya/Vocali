@@ -17,6 +17,7 @@ import { ClockIcon, GlobeIcon, MailIcon, MonitorIcon } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useMemo } from "react";
+import { cn } from "@workspace/ui/lib/utils";
 
 type InfoItem = {
   label: string;
@@ -170,65 +171,78 @@ export const ContactPanel = () => {
   }
 
   return (
-    <div className="flex h-full w-full flex-col bg-background text-foreground">
-      <div className="flex flex-col gap-y-4 p-4">
-        <div className="flex items-center gap-x-2">
-          <DicebearAvatar
-            badgeImageUrl={
-              countryInfo?.code
-                ? getCountryFlagUrl(countryInfo.code)
-                : undefined
-            }
-            seed={contactSession._id}
-            size={42}
-          />
-          <div className="flex-1 overflow-hidden">
-            <div className="flex items-center gap-x-2">
-              <h4 className="line-clamp-1">{contactSession.name}</h4>
-            </div>
-            <p className="line-clamp-1 text-sm text-muted-foreground">
-              {contactSession.email}
-            </p>
+    <div className="flex h-full w-full flex-col bg-background/50 text-foreground">
+      {/* Premium Profile Header */}
+      <div className="relative flex flex-col items-center gap-y-4 border-b border-[#7266ff]/10 bg-gradient-to-b from-[#7266ff]/5 to-transparent px-4 py-8 text-center">
+        <div className="relative">
+
+          <div className="relative rounded-full border-2 border-background shadow-sm">
+            <DicebearAvatar
+              badgeImageUrl={
+                countryInfo?.code
+                  ? getCountryFlagUrl(countryInfo.code)
+                  : undefined
+              }
+              seed={contactSession._id}
+              size={64}
+            />
           </div>
         </div>
-        <Button asChild className="w-full" size="lg">
+        <div className="flex w-full flex-col items-center overflow-hidden">
+          <h4 className="line-clamp-1 text-lg font-semibold">{contactSession.name}</h4>
+          <p className="line-clamp-1 text-sm text-muted-foreground">
+            {contactSession.email}
+          </p>
+        </div>
+        <Button
+          variant="neonPurple"
+          asChild
+          className="group mt-2 w-full shadow-[0_4px_14px_0_rgba(114,102,255,0.39)] transition-all hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(114,102,255,0.23)]"
+          size="lg"
+        >
           <Link href={`mailto:${contactSession.email}`}>
-            <MailIcon />
+            <MailIcon className="mr-2 size-4 transition-transform group-hover:scale-110" />
             <span>Send Email</span>
           </Link>
         </Button>
       </div>
 
-      <div>
+      {/* Modern Accordion Details */}
+      <div className="flex-1 overflow-y-auto p-4 custom-scrollbar">
         {contactSession.metadata && (
           <Accordion
-            className="w-full rounded-none border-y"
+            className="flex w-full flex-col gap-y-3"
             collapsible
             type="single"
+            defaultValue="device-info"
           >
             {accordionSections.map((section) => (
               <AccordionItem
-                className="rounded-none outline-none has-focus-visible:z-10 has-focus-visible:border-ring has-focus-visible:ring-[3px] has-focus-visible:ring-ring/50"
+                className="overflow-hidden rounded-2xl border border-[#7266ff]/10 bg-white/50 shadow-sm transition-colors hover:border-[#7266ff]/30 dark:bg-black/20"
                 key={section.id}
                 value={section.id}
               >
-                <AccordionTrigger className="flex w-full flex-1 items-start justify-between gap-4 rounded-none bg-accent px-5 py-4 text-left text-sm font-medium transition-all outline-none hover:no-underline disabled:pointer-events-none disabled:opacity-50">
-                  <div className="flex items-center gap-4">
-                    <section.icon className="size-4 shrink-0" />
-                    <span>{section.title}</span>
+                <AccordionTrigger className="flex w-full flex-1 cursor-pointer items-start justify-between gap-4 px-4 py-5 text-left text-sm font-medium transition-all hover:no-underline [&[data-state=open]]:bg-[#7266ff]/5">
+                  <div className="flex items-center gap-3">
+                    <div className="flex size-8 items-center justify-center rounded-full bg-[#7266ff]/10 text-[#7266ff]">
+                      <section.icon className="size-4 shrink-0" />
+                    </div>
+                    <span className="font-semibold text-foreground/90">{section.title}</span>
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="px-5 py-4">
-                  <div className="space-y-2 text-sm">
+                <AccordionContent className="px-4 pb-4 pt-1">
+                  <div className="mt-3 space-y-3 text-sm">
                     {section.items.map((item) => (
                       <div
-                        className="flex justify-between"
+                        className="flex items-center justify-between group"
                         key={`${section.id}-${item.label}`}
                       >
-                        <span className="text-muted-foreground">
-                          {item.label}:
+                        <span className="text-muted-foreground transition-colors group-hover:text-foreground/80">
+                          {item.label}
                         </span>
-                        <span className={item.className}>{item.value}</span>
+                        <span className={cn("font-medium text-right text-foreground/90", item.className)}>
+                          {item.value}
+                        </span>
                       </div>
                     ))}
                   </div>
