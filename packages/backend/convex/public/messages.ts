@@ -7,7 +7,7 @@ import { escalateConversation } from "../system/ai/tools/escalateConversation";
 import { resolveConversation } from "../system/ai/tools/resolveConversation";
 import { saveMessage } from "@convex-dev/agent";
 import { search } from "../system/ai/tools/search";
-
+// convex action doesn't have access to the database
 export const create = action({
   args: {
     prompt: v.string(),
@@ -79,7 +79,7 @@ export const create = action({
         const lastToolResult = response.toolResults[response.toolResults.length - 1];
         const resultText = (lastToolResult as any).output;
         if (typeof resultText === "string") {
-          // Because we save this AFTER generateText finishes, it goes into the DB 
+          // Because we save this AFTER generateText finishes, it goes into the DB
           // AFTER the tool_result message, satisfying OpenAI's strict ordering rules!
           await supportAgent.saveMessage(ctx, {
             threadId: args.threadId,
