@@ -35,7 +35,7 @@ export const ConversationStatusButton = ({
           disabled={disabled}
           onClick={onClick}
           size="sm"
-          className="bg-amber-500 text-white hover:bg-amber-600"
+          className="bg-yellow-600 text-white hover:bg-yellow-700"
         >
           <ArrowUpIcon />
           Escalated
@@ -50,7 +50,7 @@ export const ConversationStatusButton = ({
         disabled={disabled}
         onClick={onClick}
         size="sm"
-        className="bg-red-600 text-white hover:bg-red-700 "
+        className="bg-red-700 text-white hover:bg-red-800 "
       >
         <ArrowRightIcon />
         Unresolved
