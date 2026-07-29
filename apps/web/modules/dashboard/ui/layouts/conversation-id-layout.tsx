@@ -19,8 +19,8 @@ export const ConversationIdLayout = ({
       <ResizablePanel
         className="hidden lg:block"
         defaultSize="25"
-        maxSize="35"
-        minSize="25"
+        maxSize="30"
+        minSize="20"
       >
         <ContactPanel />
       </ResizablePanel>

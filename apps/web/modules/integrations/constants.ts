@@ -22,7 +22,7 @@ export const INTEGRATIONS = [
 ];
 
 export type IntegrationId = (typeof INTEGRATIONS)[number]["id"];
-export const HTML_SCRIPT = `<script src="https://vocali-widget.vercel.app/widget.iife.js" data-organization-id="{{ORGANIZATION_ID}}"></script>`;
-export const REACT_SCRIPT = `<script src="https://vocali-widget.vercel.app/widget.iife.js" data-organization-id="{{ORGANIZATION_ID}}"></script>`;
-export const NEXTJS_SCRIPT = `<script src="https://vocali-widget.vercel.app/widget.iife.js" data-organization-id="{{ORGANIZATION_ID}}"></script>`;
-export const JAVASCRIPT_SCRIPT = `<script src="https://vocali-widget.vercel.app/widget.iife.js" data-organization-id="{{ORGANIZATION_ID}}"></script>`;
+export const HTML_SCRIPT = `<script src="https://vocaliwidget.vercel.app/widget.iife.js" data-organization-id="{{ORGANIZATION_ID}}"></script>`;
+export const REACT_SCRIPT = `<script src="https://vocaliwidget.vercel.app/widget.iife.js" data-organization-id="{{ORGANIZATION_ID}}"></script>`;
+export const NEXTJS_SCRIPT = `<script src="https://vocaliwidget.vercel.app/widget.iife.js" data-organization-id="{{ORGANIZATION_ID}}"></script>`;
+export const JAVASCRIPT_SCRIPT = `<script src="https://vocaliwidget.vercel.app/widget.iife.js" data-organization-id="{{ORGANIZATION_ID}}"></script>`;

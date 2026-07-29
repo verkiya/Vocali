@@ -1,0 +1,23 @@
+{
+  "billing": {
+    "features": {
+      "everything_in_free": {
+        "name": "Everything in Free",
+        "description": "All features included in the Free plan",
+        "include_in_jwt": true,
+        "publicly_visible": true
+      }
+    },
+    "plans": {
+      "pro": {
+        "features": [
+          "everything_in_free",
+          "ai_customer_support",
+          "global_voip_system",
+          "custom_voice",
+          "api_access"
+        ]
+      }
+    }
+  }
+}
