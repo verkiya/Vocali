@@ -5,7 +5,7 @@ import { Button } from "@workspace/ui/components/button";
 import { Input } from "@workspace/ui/components/input";
 import { Label } from "@workspace/ui/components/label";
 import { Separator } from "@workspace/ui/components/separator";
-import { CopyIcon, CheckIcon } from "lucide-react";
+import { CopyIcon, CheckIcon, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
 import { IntegrationId, INTEGRATIONS } from "../../constants";
 import Image from "next/image";
@@ -91,11 +91,23 @@ export const IntegrationsView = () => {
                     className="flex-1 md:w-64 bg-white/70 dark:bg-white/5 font-mono text-sm border-white/20 dark:border-white/10 rounded-xl h-12 shadow-inner"
                   />
                   <Button 
-                    className="gap-2 rounded-xl h-12 px-6 font-semibold bg-gradient-to-r from-[#7266ff] to-[#5143ff] text-white hover:opacity-90 shadow-lg hover:shadow-[#7266ff]/25 transition-all duration-300 w-32" 
+                    className="gap-2 rounded-xl h-12 px-6 font-semibold bg-gradient-to-r from-[#7266ff] to-[#5143ff] text-white hover:opacity-90 shadow-lg hover:shadow-[#7266ff]/25 transition-all duration-300 w-32 shrink-0" 
                     onClick={handleCopy}
                   >
                     {isCopied ? <CheckIcon className="size-4" /> : <CopyIcon className="size-4" />}
                     {isCopied ? "Copied!" : "Copy"}
+                  </Button>
+                  <Button 
+                    className="gap-2 rounded-xl h-12 px-6 font-semibold bg-white dark:bg-white/5 text-[#7266ff] dark:text-white hover:bg-gray-50 dark:hover:bg-white/10 border-2 border-[#7266ff]/20 dark:border-white/10 shadow-sm hover:border-[#7266ff]/40 dark:hover:border-white/30 transition-all duration-300 whitespace-nowrap shrink-0"
+                    onClick={() => {
+                      if (!organization?.id) return;
+                      const baseUrl = process.env.NEXT_PUBLIC_WIDGET_URL || "http://localhost:3001";
+                      const url = new URL(baseUrl);
+                      url.searchParams.set("organizationId", organization.id);
+                      window.open(url.toString(), "_blank");
+                    }}
+                  >
+                    Test Widget <ExternalLink className="size-4" />
                   </Button>
                 </div>
               </div>
