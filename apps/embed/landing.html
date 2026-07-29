@@ -2,10 +2,154 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Widget Testing</title>
+    <title>Vocali - Live Landing Page</title>
+    <style>
+      :root {
+        --primary-gradient: linear-gradient(135deg, #7266ff, #5143ff);
+        --bg-color: #f8fafc;
+        --text-main: #0f172a;
+        --text-muted: #64748b;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        margin: 0;
+        min-height: 100vh;
+        background-color: var(--bg-color);
+        background-image: 
+          radial-gradient(circle at 50% -20%, rgba(114, 102, 255, 0.15), transparent 60%);
+        color: var(--text-main);
+        display: flex;
+        flex-direction: column;
+      }
+
+      nav {
+        padding: 24px 48px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+      }
+
+      .logo {
+        font-weight: 800;
+        font-size: 1.5rem;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text-muted);
+        font-weight: 600;
+        margin-left: 24px;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: #7266ff;
+      }
+
+      .hero {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 60px 20px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        font-size: 4rem;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+        margin-bottom: 24px;
+      }
+
+      p {
+        font-size: 1.25rem;
+        color: var(--text-muted);
+        margin-bottom: 40px;
+        line-height: 1.6;
+        max-width: 600px;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 8px 16px;
+        background: rgba(114, 102, 255, 0.1);
+        color: #7266ff;
+        border-radius: 100px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: 24px;
+        border: 1px solid rgba(114, 102, 255, 0.2);
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 16px 32px;
+        border: none;
+        border-radius: 16px;
+        background: var(--primary-gradient);
+        color: white;
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-weight: 600;
+        box-shadow: 0 8px 24px rgba(114, 102, 255, 0.3);
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 32px rgba(114, 102, 255, 0.4);
+      }
+
+      .footer-note {
+        margin-top: 80px;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        background: rgba(255, 255, 255, 0.6);
+        padding: 16px 24px;
+        border-radius: 16px;
+        border: 1px solid rgba(0,0,0,0.05);
+      }
+    </style>
   </head>
   <body>
+    <nav>
+      <div class="logo">Vocali</div>
+      <div class="nav-links">
+        <a href="/demo.html">Go to Interactive Demo</a>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <div class="badge">Live Production Example</div>
+      <h1>The future of customer support is here.</h1>
+      <p>
+        This page demonstrates a standard static website where the Vocali widget has been embedded using the single line of JavaScript. Try interacting with the floating bubble in the bottom right!
+      </p>
+      <a href="/demo.html" class="btn">Configure Settings in Demo</a>
+      
+      <div class="footer-note">
+        <strong>How this works:</strong> The script tag is placed just before the closing <code>&lt;/body&gt;</code> tag of this HTML file, instantly deploying the AI agent to this page.
+      </div>
+    </div>
+
+    <!-- Production Widget Script -->
     <script
       src="https://vocaliwidget.vercel.app/widget.iife.js"
       data-organization-id="org_3C4LRt2Wpdczq8Mk2cKHdsZCkYa"
