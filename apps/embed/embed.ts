@@ -61,7 +61,7 @@ import { chatBubbleIcon, closeIcon } from "./icons";
       width: 60px;
       height: 60px;
       border-radius: 50%;
-      background: #3b82f6;
+      background: linear-gradient(135deg, #7266ff, #5143ff);
       color: white;
       border: none;
       cursor: pointer;
@@ -69,8 +69,8 @@ import { chatBubbleIcon, closeIcon } from "./icons";
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 24px rgba(59, 130, 246, 0.35);
-      transition: all 0.2s ease;
+      box-shadow: 0 8px 32px rgba(114, 102, 255, 0.4);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     `;
 
     button.addEventListener("click", toggleWidget);
@@ -95,13 +95,13 @@ import { chatBubbleIcon, closeIcon } from "./icons";
       max-width: calc(100vw - 40px);
       max-height: calc(100vh - 110px);
       z-index: 999998;
-      border-radius: 16px;
+      border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
       display: none;
       opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.3s ease;
+      transform: translateY(20px) scale(0.95);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     `;
 
     // Create iframe
@@ -161,7 +161,7 @@ import { chatBubbleIcon, closeIcon } from "./icons";
       setTimeout(() => {
         if (container) {
           container.style.opacity = "1";
-          container.style.transform = "translateY(0)";
+          container.style.transform = "translateY(0) scale(1)";
         }
       }, 10);
       // Change button icon to close
@@ -173,14 +173,14 @@ import { chatBubbleIcon, closeIcon } from "./icons";
     if (container && button) {
       isOpen = false;
       container.style.opacity = "0";
-      container.style.transform = "translateY(10px)";
+      container.style.transform = "translateY(20px) scale(0.95)";
       // Hide after animation
       setTimeout(() => {
         if (container) container.style.display = "none";
-      }, 300);
+      }, 400);
       // Change button icon back to chat
       button.innerHTML = chatBubbleIcon;
-      button.style.background = "#3b82f6";
+      button.style.background = "linear-gradient(135deg, #7266ff, #5143ff)";
     }
   }
 
